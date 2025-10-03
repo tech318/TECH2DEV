@@ -4,6 +4,11 @@
 const express = require("express");
 const cors = require("cors");
 
+app.use((req, _res, next) => {
+  console.log('HTTP', req.method, req.url, req.headers['x-forwarded-for'] || req.ip);
+  next();
+});
+
 const app = express();
 app.use(cors());
 app.use(express.json());
